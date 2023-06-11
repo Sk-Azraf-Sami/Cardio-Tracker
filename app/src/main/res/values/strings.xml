@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Cardio Tracker</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_upbtn">SIGN UP</string>
+    <string name="loginn">LOGIN</string>
+    <string name="sign_upp">SIGN UP</string>
+    <string name="click_to_login">Click To Login</string>
+    <string name="click_to_sign_up">Click To Sign Up</string>
+    <string name="click_here_to_login_now">Click Here To Login Now</string>
+    <string name="no_account_click_here_to_sign_up">No Account? Click Here To Sign Up</string>
+    <string name="welcome_to_the_homepage_of_cardio_tracker">Welcome to the Homepage of Cardio Tracker!</string>
+</resources>

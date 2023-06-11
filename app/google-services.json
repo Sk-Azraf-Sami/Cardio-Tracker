@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "532680077017",
+    "project_id": "cardio-tracker-90855",
+    "storage_bucket": "cardio-tracker-90855.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532680077017:android:0d6cd42c277451610418c8",
+        "android_client_info": {
+          "package_name": "com.example.cardiotracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532680077017-pvdke1en95avuq5ri6c6n0hakt2dhnt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjeWYeAN7d8la4yufFbNABcXed7enpPM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532680077017-pvdke1en95avuq5ri6c6n0hakt2dhnt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
