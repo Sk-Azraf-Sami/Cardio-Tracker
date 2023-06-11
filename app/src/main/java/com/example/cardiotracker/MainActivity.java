@@ -10,6 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnLogout;
+    private Button btnAddRecord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,5 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnAddRecord = findViewById(R.id.btnAddNewRecord);
+        btnAddRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddRecord.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
