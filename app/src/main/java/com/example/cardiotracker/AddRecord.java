@@ -53,7 +53,42 @@ public class AddRecord extends AppCompatActivity {
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
-        
+        if (TextUtils.isEmpty(heartRate)) {
+            editHeartRate.setError("Heart Rate cannot be empty");
+            return;
+        }
+
+        if (TextUtils.isEmpty(sysPressure)) {
+            editSysPressure.setError("Systolic Pressure cannot be empty");
+            return;
+        }
+
+        if (TextUtils.isEmpty(diaPressure)) {
+            editDiaPressure.setError("Diastolic Pressure cannot be empty");
+            return;
+        }
+
+        //comment can be empty
+
+        //record validation
+        int iHeartRate = Integer.parseInt(heartRate);
+        int iSysPressure = Integer.parseInt(sysPressure);
+        int iDiaPressure = Integer.parseInt(diaPressure);
+
+        if (iHeartRate < 0) {
+            editHeartRate.setError("Heart Rate cannot be negative");
+            return;
+        }
+
+        if (iSysPressure < 0) {
+            editSysPressure.setError("Pressure cannot be negative");
+            return;
+        }
+
+        if (iDiaPressure < 0) {
+            editDiaPressure.setError("Pressure cannot be negative");
+            return;
+        }
 
 
         // Get the current user's unique ID from Firebase Authentication
