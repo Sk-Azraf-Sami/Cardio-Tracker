@@ -95,19 +95,34 @@ public class AddRecord extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //data insert under record id
-        String recordId = databaseReference.child(userId).push().getKey();
+        /*String recordId = databaseReference.child(userId).push().getKey();*/
+
+        // Get the reference for the current user's data in the database
+        DatabaseReference userRef = databaseReference.child("Users").child(userId);
+
+        // Generate a unique ID for the record
+        String recordId = userRef.push().getKey();
+
 
         // Create a new node under the current user's ID and set the values
-        DatabaseReference userRef = databaseReference.child(recordId);
-        userRef.child("HeartRate").setValue(heartRate);
+        //DatabaseReference userRef = databaseReference.child(recordId);
+        DatabaseReference recordRef = userRef.child(recordId);
+        /*userRef.child("HeartRate").setValue(heartRate);
         userRef.child("SysPressure").setValue(sysPressure);
         userRef.child("DiaPressure").setValue(diaPressure);
         userRef.child("Comment").setValue(comment);
 
         userRef.child("SystemDate").setValue(currentDate);
-        userRef.child("SystemTime").setValue(currentTime)
+        userRef.child("SystemTime").setValue(currentTime)*/
+        recordRef.child("HeartRate").setValue(heartRate);
+        recordRef.child("SysPressure").setValue(sysPressure);
+        recordRef.child("DiaPressure").setValue(diaPressure);
+        recordRef.child("Comment").setValue(comment);
+        recordRef.child("SystemDate").setValue(currentDate);
+        recordRef.child("SystemTime").setValue(currentTime)
 
-         .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
