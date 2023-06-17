@@ -23,6 +23,7 @@ import java.util.Locale;
 public class AddRecord extends AppCompatActivity {
     private EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
     private Button btnAdd;
+    private  Button clear;
     private DatabaseReference databaseReference;
 
     @Override
@@ -42,6 +43,14 @@ public class AddRecord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addInformation();
+            }
+        });
+
+        clear = findViewById(R.id.btnClear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearFields();
             }
         });
     }
@@ -133,4 +142,12 @@ public class AddRecord extends AppCompatActivity {
             }
         });
     }
+
+    private void clearFields() {
+        editHeartRate.setText("");
+        editSysPressure.setText("");
+        editDiaPressure.setText("");
+        editComment.setText("");
+    }
+
 }
