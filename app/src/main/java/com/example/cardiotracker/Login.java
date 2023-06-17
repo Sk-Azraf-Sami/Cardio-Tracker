@@ -21,41 +21,29 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    TextInputEditText email,password;
+    TextInputEditText email, password;
     Button login;
 
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
 
- /*   @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth=FirebaseAuth.getInstance();
-        email=findViewById(R.id.email);
-        password=findViewById(R.id.password);
-        login=findViewById(R.id.login);
-        progressBar=findViewById(R.id.pbar);
-        textView=findViewById(R.id.signupnow);
+        mAuth = FirebaseAuth.getInstance();
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        login = findViewById(R.id.login);
+        progressBar = findViewById(R.id.pbar);
+        textView = findViewById(R.id.signupnow);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), SignUp.class);
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
                 startActivity(intent);
                 finish();
             }
@@ -64,51 +52,34 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String emailStr = String.valueOf(email.getText());
+                String passwordStr = String.valueOf(password.getText());
 
-                String emaill,passwordd;
-                emaill=String.valueOf(email.getText());
-                passwordd=String.valueOf(password.getText()) ;
-
-
-
-
-
-                if(TextUtils.isEmpty(emaill))
-                {
-                    Toast.makeText(Login.this,"Enter Email",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(emailStr)) {
+                    Toast.makeText(Login.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(TextUtils.isEmpty(passwordd))
-                {
-                    Toast.makeText(Login.this,"Enter Password",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(passwordStr)) {
+                    Toast.makeText(Login.this, "Enter Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 progressBar.setVisibility(View.VISIBLE);
-                mAuth.signInWithEmailAndPassword(emaill, passwordd)
+                mAuth.signInWithEmailAndPassword(emailStr, passwordStr)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(Login.this, "Successful Login",
-                                            Toast.LENGTH_SHORT).show();
-
-                                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                                    Toast.makeText(Login.this, "Successful Login", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
-
-
                                 } else {
-
-
-                                    Toast.makeText(Login.this, "Authentication failed",
-                                            Toast.LENGTH_SHORT).show();
-
+                                    Toast.makeText(Login.this, "Authentication failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
     }
