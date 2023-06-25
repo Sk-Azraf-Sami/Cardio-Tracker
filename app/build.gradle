@@ -41,6 +41,7 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-analytics:20.0.0'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
 
     // implementation project(path: ':app')
     testImplementation 'junit:junit:4.13.2'
@@ -54,5 +55,9 @@ dependencies {
 
     // Espresso Intents
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
+
+
 
 }
