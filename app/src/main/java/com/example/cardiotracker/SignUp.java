@@ -54,11 +54,16 @@ public class SignUp extends AppCompatActivity {
                                 public void onComplete(Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Signup success, show toast notification
-                                        Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
 
                                         // Navigate to the Login activity
-                                        Intent intent = new Intent(SignUp.this, Login.class);
-                                        startActivity(intent);
+                                        /*Intent intent = new Intent(SignUp.this, Login.class);
+                                        startActivity(intent);*/
+                                        //finish();
+
+                                        Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignUp.this, Login.class));
+                                        //startActivity(new Intent(InstrumentationRegistry.getTargetContext(), Login.class));
                                         finish();
                                     } else {
                                         // Signup failed, display error message
