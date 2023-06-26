@@ -1,13 +1,15 @@
 # Cardio Tracker App
 
 ![Version](https://img.shields.io/badge/Version-1.0-blue.svg?style=plastic&logo=appveyor&logoColor=white&color=blueviolet)
-![Platform](https://img.shields.io/badge/Platform-Android-blue.svg?style=plastic&logo=android&logoColor=white&color=yellow)
+![Platform](https://img.shields.io/badge/Platform-Android-blue.svg?style=plastic&logo=android&logoColor=white&color=green)
+![Minimum Android Version](https://img.shields.io/badge/Minimum%20Android%20Version-24-red.svg)
+![Target Android Version](https://img.shields.io/badge/Target%20Android%20Version-33-red.svg)
 ![IDE](https://img.shields.io/badge/IDE-Android_Studio-blue.svg?style=plastic&logo=androidstudio&logoColor=white&color=blue)
 [![GitHub contributors](https://img.shields.io/github/contributors-anon/Sk-Azraf-Sami/Cardio-Tracker?style=plastic&labelColor=&color=blue&logo=)](https://github.com/Sk-Azraf-Sami/Cardio-Tracker/graphs/contributors)
 [![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/Sk-Azraf-Sami/Cardio-Tracker?style=plastic&labelColor=&color=blue&logo=)](https://github.com/Sk-Azraf-Sami/Cardio-Tracker/commits/main)
 [![GitHub language count](https://img.shields.io/github/languages/count/Sk-Azraf-Sami/Cardio-Tracker?style=plastic&labelColor=&color=blue&logo=)](https://github.com/Sk-Azraf-Sami/Cardio-Tracker/search?l=java&type=Code)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Sk-Azraf-Sami/Cardio-Tracker?style=plastic)
-![License](https://img.shields.io/badge/License-[MIT]-blue.svg?style=plastic&color=blue&logo=GitHub)
+![License](https://img.shields.io/badge/License-[MIT]-blue.svg?style=plastic&color=orange&logo=GitHub)
 
 
 ## Table of Contents
