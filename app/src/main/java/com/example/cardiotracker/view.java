@@ -2,8 +2,11 @@ package com.example.cardiotracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,6 +26,7 @@ public class view extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+    private List<DataSnapshot> dataSnapshotList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +40,34 @@ public class view extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(currentUser.getUid());
 
         fetchDataFromDatabase();
+
+        ListView listView = findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DataSnapshot dataSnapshot = dataSnapshotList.get(position);
+                String key = dataSnapshot.getKey();
+                openUpdateDeleteActivity(key);
+            }
+        });
     }
 
     private void fetchDataFromDatabase() {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshotList = new ArrayList<>();
                 List<String> dataList = new ArrayList<>();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Assuming the data is stored under a child with a unique ID
-                    String userId = snapshot.getKey();
+                    dataSnapshotList.add(snapshot);
 
                     // Access the data fields
                     String comment = snapshot.child("Comment").getValue(String.class);
-                    String diaPressure = snapshot.child("DiaPressure").getValue(String.class);
                     String heartRate = snapshot.child("HeartRate").getValue(String.class);
                     String sysPressure = snapshot.child("SysPressure").getValue(String.class);
+                    String diaPressure = snapshot.child("DiaPressure").getValue(String.class);
                     String systemDate = snapshot.child("SystemDate").getValue(String.class);
                     String systemTime = snapshot.child("SystemTime").getValue(String.class);
 
@@ -72,10 +87,7 @@ public class view extends AppCompatActivity {
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(view.this,
                         android.R.layout.simple_list_item_1, dataList);
                 listView.setAdapter(adapter);
-
             }
-
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -87,6 +99,9 @@ public class view extends AppCompatActivity {
         databaseReference.addValueEventListener(valueEventListener);
     }
 
-
+    private void openUpdateDeleteActivity(String key) {
+        Intent intent = new Intent(this, UpdateDeleteActivity.class);
+        intent.putExtra("key", key);
+        startActivity(intent);
+    }
 }
-
