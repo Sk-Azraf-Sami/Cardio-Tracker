@@ -5,110 +5,87 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.example.cardiotracker.MainActivity;
+import com.example.cardiotracker.SignUp;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
-    TextInputEditText email,password;
-    Button login;
+    private EditText emailEditText, passwordEditText;
+    private Button loginButton;
+    private TextView createAccountTextView;
 
-    FirebaseAuth mAuth;
-    ProgressBar progressBar;
-    TextView textView;
-
- /*   @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }*/
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth=FirebaseAuth.getInstance();
-        email=findViewById(R.id.email);
-        password=findViewById(R.id.password);
-        login=findViewById(R.id.login);
-        progressBar=findViewById(R.id.pbar);
-        textView=findViewById(R.id.signupnow);
+        // Initialize Firebase Authentication
+        mAuth = FirebaseAuth.getInstance();
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+        createAccountTextView = findViewById(R.id.createAccountTextView);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), SignUp.class);
-                startActivity(intent);
-                finish();
+                loginUser();
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
+        createAccountTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String emaill,passwordd;
-                emaill=String.valueOf(email.getText());
-                passwordd=String.valueOf(password.getText()) ;
-
-
-
-
-
-                if(TextUtils.isEmpty(emaill))
-                {
-                    Toast.makeText(Login.this,"Enter Email",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(passwordd))
-                {
-                    Toast.makeText(Login.this,"Enter Password",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                progressBar.setVisibility(View.VISIBLE);
-                mAuth.signInWithEmailAndPassword(emaill, passwordd)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(Login.this, "Successful Login",
-                                            Toast.LENGTH_SHORT).show();
-
-                                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-
-
-                                } else {
-
-
-                                    Toast.makeText(Login.this, "Authentication failed",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        });
-
+                startActivity(new Intent(Login.this, SignUp.class));
             }
         });
+    }
+
+    private void loginUser() {
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login.this, MainActivity.class));
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(Login.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
