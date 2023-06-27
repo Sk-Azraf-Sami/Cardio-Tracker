@@ -1,0 +1,56 @@
+<!-- activity_update_delete.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/heartRateEditText"
+        android:height="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="HeartRate" />
+
+
+    <EditText
+        android:id="@+id/sysPressureEditText"
+        android:height="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SysPressure" />
+
+    <EditText
+        android:id="@+id/diaPressureEditText"
+        android:height="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="DiaPressure" />
+
+
+
+
+    <EditText
+        android:id="@+id/commentEditText"
+        android:height="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comment" />
+
+
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
+
+</LinearLayout>
