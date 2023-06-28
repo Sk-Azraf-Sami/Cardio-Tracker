@@ -3,8 +3,12 @@ package com.example.cardiotracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +27,8 @@ public class Login extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private TextView createAccountTextView;
+    private CheckBox showPasswordCheckBox;
+
 
     private FirebaseAuth mAuth;
 
@@ -38,6 +44,20 @@ public class Login extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         createAccountTextView = findViewById(R.id.createAccountTextView);
+        showPasswordCheckBox = findViewById(R.id.showPasswordCheckBox);
+
+        showPasswordCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Show password
+                    passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    // Hide password
+                    passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +30,7 @@ public class SignUp extends AppCompatActivity {
     private Button signUpButton;
     private TextView alreadyAccountTextView;
     private FirebaseAuth mAuth;
+    private CheckBox showPasswordCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,20 @@ public class SignUp extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         signUpButton = findViewById(R.id.signupButton);
         alreadyAccountTextView = findViewById(R.id.AlreadyAccountTextView);
+        showPasswordCheckBox = findViewById(R.id.showPasswordCheckBox);
+
+        showPasswordCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Show password
+                    passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    // Hide password
+                    passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,16 +73,11 @@ public class SignUp extends AppCompatActivity {
                                 public void onComplete(Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Signup success, show toast notification
-                                        //Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
 
                                         // Navigate to the Login activity
-                                        /*Intent intent = new Intent(SignUp.this, Login.class);
-                                        startActivity(intent);*/
-                                        //finish();
-
-                                        Toast.makeText(SignUp.this, "Signup successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(SignUp.this, Login.class));
-                                        //startActivity(new Intent(InstrumentationRegistry.getTargetContext(), Login.class));
+                                        Intent intent = new Intent(SignUp.this, Login.class);
+                                        startActivity(intent);
                                         finish();
                                     } else {
                                         // Signup failed, display error message
