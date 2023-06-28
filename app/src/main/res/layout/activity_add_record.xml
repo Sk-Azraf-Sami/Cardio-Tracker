@@ -4,18 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="1dp">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="280dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_2"
+        android:scaleType="fitCenter"
+        android:padding="10dp" />
 
     <!-- Header -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Information"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textColor="#000000"
         android:textStyle="bold"
         android:gravity="center"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:background="@android:color/darker_gray"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <!-- Heart Rate -->
     <EditText
@@ -24,6 +36,8 @@
         android:layout_height="wrap_content"
         android:hint="Heart Rate"
         android:padding="16dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
         android:inputType="numberDecimal"
         android:digits="0123456789." />
 
@@ -34,6 +48,8 @@
         android:layout_height="wrap_content"
         android:hint="Systolic Pressure"
         android:padding="16dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
         android:inputType="numberDecimal"
         android:digits="0123456789." />
 
@@ -44,6 +60,8 @@
         android:layout_height="wrap_content"
         android:hint="Diastolic Pressure"
         android:padding="16dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
         android:inputType="numberDecimal"
         android:digits="0123456789." />
 
@@ -53,7 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Add Comment"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:textColor="#000000"
+        android:textSize="16sp" />
 
     <!-- Buttons -->
     <LinearLayout
@@ -66,8 +86,9 @@
         <!-- Add Button -->
         <Button
             android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Add"
             android:textColor="#ffffff"
 
@@ -77,8 +98,9 @@
         <!-- Cancel Button -->
         <Button
             android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Clear"
             android:textColor="#ffffff"
 
