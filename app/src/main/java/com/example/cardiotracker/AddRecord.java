@@ -23,7 +23,7 @@ import java.util.Locale;
 public class AddRecord extends AppCompatActivity {
     private EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
     private Button btnAdd;
-    private  Button clear;
+    private Button clear;
     private DatabaseReference databaseReference;
 
 
@@ -33,7 +33,6 @@ public class AddRecord extends AppCompatActivity {
         setContentView(R.layout.activity_add_record);
 
         databaseReference = databaseReference = FirebaseDatabase.getInstance().getReference();
-
 
         editHeartRate = findViewById(R.id.editHeartRate);
         editSysPressure = findViewById(R.id.editSystolicPressure);
@@ -57,15 +56,13 @@ public class AddRecord extends AppCompatActivity {
         });
     }
 
-
-    private
-    void addInformation() {
+    private void addInformation() {
         String heartRate = editHeartRate.getText().toString().trim();
         String sysPressure = editSysPressure.getText().toString().trim();
         String diaPressure = editDiaPressure.getText().toString().trim();
         String comment = editComment.getText().toString().trim();
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String currentTime = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault()).format(new Date());
 
         if (TextUtils.isEmpty(heartRate)) {
             editHeartRate.setError("Heart Rate cannot be empty");
@@ -82,9 +79,9 @@ public class AddRecord extends AppCompatActivity {
             return;
         }
 
-        //comment can be empty
+        // Comment can be empty
 
-        //record validation
+        // Record validation
         int iHeartRate = Integer.parseInt(heartRate);
         int iSysPressure = Integer.parseInt(sysPressure);
         int iDiaPressure = Integer.parseInt(diaPressure);
@@ -104,39 +101,23 @@ public class AddRecord extends AppCompatActivity {
             return;
         }
 
-
         // Get the current user's unique ID from Firebase Authentication
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        //data insert under record id
-        /*String recordId = databaseReference.child(userId).push().getKey();*/
 
         // Get the reference for the current user's data in the database
         DatabaseReference userRef = databaseReference.child("Users").child(userId);
 
-
         // Generate a unique ID for the record
         String recordId = userRef.push().getKey();
 
-
         // Create a new node under the current user's ID and set the values
-        //DatabaseReference userRef = databaseReference.child(recordId);
         DatabaseReference recordRef = userRef.child(recordId);
-        /*userRef.child("HeartRate").setValue(heartRate);
-        userRef.child("SysPressure").setValue(sysPressure);
-        userRef.child("DiaPressure").setValue(diaPressure);
-        userRef.child("Comment").setValue(comment);
-
-        userRef.child("SystemDate").setValue(currentDate);
-        userRef.child("SystemTime").setValue(currentTime)*/
         recordRef.child("HeartRate").setValue(heartRate);
         recordRef.child("SysPressure").setValue(sysPressure);
         recordRef.child("DiaPressure").setValue(diaPressure);
         recordRef.child("Comment").setValue(comment);
         recordRef.child("SystemDate").setValue(currentDate);
         recordRef.child("SystemTime").setValue(currentTime)
-
-
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -147,7 +128,6 @@ public class AddRecord extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     private void clearFields() {
@@ -156,5 +136,4 @@ public class AddRecord extends AppCompatActivity {
         editDiaPressure.setText("");
         editComment.setText("");
     }
-
 }
