@@ -18,13 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class list_item_view extends AppCompatActivity {
 
@@ -72,74 +67,44 @@ public class list_item_view extends AppCompatActivity {
                     String heartRateString = snapshot.child("HeartRate").getValue(String.class);
                     String sysPressure = snapshot.child("SysPressure").getValue(String.class);
                     String diaPressure = snapshot.child("DiaPressure").getValue(String.class);
-                    String systemDateString = snapshot.child("SystemDate").getValue(String.class);
-                    String systemTimeString = snapshot.child("SystemTime").getValue(String.class);
+                    String systemDate = snapshot.child("SystemDate").getValue(String.class);
+                    String systemTime = snapshot.child("SystemTime").getValue(String.class);
 
-                    // Parse system date
-                    Date systemDate = null;
-                    try {
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                        systemDate = dateFormat.parse(systemDateString);
-                    } catch (ParseException e) {
-                        Log.e("view", "Invalid system date format", e);
-                    }
-
-                    long systemDateLong = 0;
-                    if (systemDate != null) {
-                        systemDateLong = systemDate.getTime();
-                    }
-
-                    // Parse system time
-                    Date time = null;
-                    try {
-                        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
-                        time = timeFormat.parse(systemTimeString);
-                    } catch (ParseException e) {
-                        Log.e("view", "Invalid system time format", e);
-                    }
-
-                    long systemTime = 0;
-                    if (time != null) {
-                        systemTime = time.getTime();
-                    }
-
-                    // Format the date
-                    Date date = new Date(systemDateLong);
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
-                    String formattedDate = dateFormat.format(date);
-
-                    // Format the time
-                    DateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                    String formattedTime = timeFormat.format(time);
+                    ImageView statusIndicator = new ImageView(list_item_view.this);
+                    int heartRate = 0;
+                    int sysPressureInt = 0;
+                    int diaPressureInt = 0;
 
                     // Convert the heartRateString to an integer
-                    int heartRate = 0;
                     try {
-                        String numericValue = heartRateString.split(" ")[0];
-                        heartRate = Integer.parseInt(numericValue);
+                        if (heartRateString != null) {
+                            String numericValue = heartRateString.split(" ")[0];
+                            heartRate = Integer.parseInt(numericValue);
+                        }
                     } catch (NumberFormatException e) {
                         Log.e("HealthDataAdapter", "Invalid heart rate format", e);
                     }
 
                     // Convert the sysPressure to an integer
-                    int sysPressureInt = 0;
                     try {
-                        String numericValue = sysPressure.split(" ")[0];
-                        sysPressureInt = Integer.parseInt(numericValue);
+                        if (sysPressure != null) {
+                            String numericValue = sysPressure.split(" ")[0];
+                            sysPressureInt = Integer.parseInt(numericValue);
+                        }
                     } catch (NumberFormatException e) {
                         Log.e("HealthDataAdapter", "Invalid sys pressure format", e);
                     }
 
                     // Convert the diaPressure to an integer
-                    int diaPressureInt = 0;
                     try {
-                        String numericValue = diaPressure.split(" ")[0];
-                        diaPressureInt = Integer.parseInt(numericValue);
+                        if (diaPressure != null) {
+                            String numericValue = diaPressure.split(" ")[0];
+                            diaPressureInt = Integer.parseInt(numericValue);
+                        }
                     } catch (NumberFormatException e) {
                         Log.e("HealthDataAdapter", "Invalid dia pressure format", e);
                     }
 
-                    ImageView statusIndicator = new ImageView(list_item_view.this);
                     if (heartRate >= 60 && heartRate <= 100 && diaPressureInt >= 60 && diaPressureInt <= 80 && sysPressureInt >= 90 && sysPressureInt <= 120) {
                         statusIndicator.setImageResource(R.drawable.green_circle); // Normal status
                     } else {
@@ -150,7 +115,7 @@ public class list_item_view extends AppCompatActivity {
                     String diaPressureWithUnit = diaPressure + " mmHg";
                     String sysPressureWithUnit = sysPressure + " mmHg";
 
-                    HealthData healthData = new HealthData(formattedDate, formattedTime, diaPressureWithUnit, sysPressureWithUnit, heartRateWithUnit, comment);
+                    HealthData healthData = new HealthData(systemDate, systemTime, diaPressureWithUnit, sysPressureWithUnit, heartRateWithUnit, comment);
                     dataList.add(healthData);
                 }
 

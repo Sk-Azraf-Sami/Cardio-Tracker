@@ -61,7 +61,7 @@ public class AddRecord extends AppCompatActivity {
         String sysPressure = editSysPressure.getText().toString().trim();
         String diaPressure = editDiaPressure.getText().toString().trim();
         String comment = editComment.getText().toString().trim();
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
         String currentTime = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault()).format(new Date());
 
         if (TextUtils.isEmpty(heartRate)) {
