@@ -12,4 +12,14 @@
     <string name="click_here_to_login_now">Click Here To Login Now</string>
     <string name="no_account_click_here_to_sign_up">No Account? Click Here To Sign Up</string>
     <string name="welcome_to_the_homepage_of_cardio_tracker">Welcome to the Homepage of Cardio Tracker!</string>
+    <string name="contact_us_text">If you have any questions or concerns regarding our privacy policy or the handling of your personal information, please contact us at sk.azraf7026@gmail.com.</string>
+    <string name="changes_to_privacy_policy_text">We may update this privacy policy from time to time. Any changes will be communicated to you through the app or via email. It is recommended to review the privacy policy periodically for any updates.</string>
+    <string name="choices_text">You have the right to opt-out of certain data collection or delete your data from the app. If you choose to do so, please contact us using the provided contact information.</string>
+    <string name="third_party_services_text">We do not share your personal information with any third-party services. However, please note that we use Firebase Authentication for storing and securing user email and password information. Firebase\'s privacy policy governs the usage of this information. We recommend reviewing their privacy policy for more information.</string>
+    <string name="data_security_text">We take the security of your data seriously. We employ industry-standard security measures, including encryption, access controls, and secure storage, to protect your personal information.</string>
+    <string name="information_usage_text">The collected data, including heart rate, systolic pressure, and diastolic pressure, is used to improve the app\'s functionality and provide you with personalized experiences.</string>
+    <string name="information_collection_text">" We collect and store the following information from you:\n        - Heart rate\n        - Systolic pressure\n        - Diastolic pressure\nThis information is securely stored and used solely for the purpose of providing you with the app's functionality and features."</string>
+    <string name="introduction_text">Thank you for using Cardio Tracker App. This privacy policy explains how we collect, use, and protect your personal information in relation to the use of our app.</string>
+
+
 </resources>
