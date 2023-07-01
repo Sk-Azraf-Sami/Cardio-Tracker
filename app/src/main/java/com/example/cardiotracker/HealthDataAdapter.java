@@ -67,7 +67,7 @@ public class HealthDataAdapter extends ArrayAdapter<HealthData> {
 
     private String formatTime(String time) {
         try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss a", Locale.getDefault());
+            SimpleDateFormat inputFormat = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
             SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
             Date date = inputFormat.parse(time);
             return outputFormat.format(date);
