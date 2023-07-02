@@ -68,7 +68,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Log In" />
+        android:backgroundTint="@color/blue"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/createAccountTextView"

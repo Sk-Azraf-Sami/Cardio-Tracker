@@ -26,6 +26,7 @@
             android:id="@+id/heartRateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Heart Rate" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,6 +39,7 @@
             android:id="@+id/sysPressureEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Systolic Pressure" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +51,7 @@
             android:id="@+id/diaPressureEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Diastolic Pressure" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="Update"
         android:textColor="@android:color/white"
-
+        android:backgroundTint="@color/blue"
         android:layout_marginTop="16dp" />
 
     <Button
@@ -77,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete"
+        android:backgroundTint="@color/red"
         android:textColor="@android:color/white"
 
         android:layout_marginTop="8dp" />
