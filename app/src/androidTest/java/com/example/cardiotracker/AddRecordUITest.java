@@ -26,8 +26,11 @@ public class AddRecordUITest {
 
         // Type text into the EditText fields
         Espresso.onView(ViewMatchers.withId(R.id.editHeartRate)).perform(ViewActions.typeText("70"));
+        Espresso.pressBack();
         Espresso.onView(ViewMatchers.withId(R.id.editSystolicPressure)).perform(ViewActions.typeText("120"));
+        Espresso.pressBack();
         Espresso.onView(ViewMatchers.withId(R.id.editDiastolicPressure)).perform(ViewActions.typeText("80"));
+        Espresso.pressBack();
         Espresso.onView(ViewMatchers.withId(R.id.editAddComment)).perform(ViewActions.typeText("Sample comment"));
         Espresso.pressBack(); //Back button // ----------------for this I get test failed error
 
