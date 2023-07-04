@@ -1,90 +1,87 @@
+<!-- activity_update_delete.xml -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="1dp">
 
-    <!-- Header -->
-    <TextView
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="280dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_2"
+        android:scaleType="fitCenter"
+        android:padding="10dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Information"
-        android:textSize="24sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="16dp" />
+        android:layout_height="wrap_content">
 
-    <!-- Heart Rate -->
-    <EditText
-        android:id="@+id/editHeartRate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Heart Rate"
-        android:padding="16dp"
-        android:inputType="numberDecimal"
-        android:digits="0123456789." />
-
-    <!-- Systolic Pressure -->
-    <EditText
-        android:id="@+id/editSystolicPressure"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Systolic Pressure"
-        android:padding="16dp"
-        android:inputType="numberDecimal"
-        android:digits="0123456789." />
-
-    <!-- Diastolic Pressure -->
-    <EditText
-        android:id="@+id/editDiastolicPressure"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Diastolic Pressure"
-        android:padding="16dp"
-        android:inputType="numberDecimal"
-        android:digits="0123456789." />
-
-    <!-- Add Comment -->
-    <EditText
-        android:id="@+id/editAddComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Add Comment"
-        android:padding="16dp" />
-
-    <!-- Buttons -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center">
-
-        <!-- Add Button -->
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editHeartRate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:textColor="#ffffff"
+            android:inputType="number"
+            android:hint="Heart Rate" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            android:padding="16dp"
-            android:layout_marginEnd="8dp" />
 
-        <!-- Cancel Button -->
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSystolicPressure"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:textColor="#ffffff"
+            android:inputType="number"
+            android:hint="Systolic Pressure" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            android:padding="16dp"
-            android:layout_marginStart="8dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </LinearLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editDiastolicPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Diastolic Pressure" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editAddComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Comment" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/red"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

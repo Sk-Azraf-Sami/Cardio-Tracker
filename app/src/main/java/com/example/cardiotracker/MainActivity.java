@@ -1,57 +1,116 @@
 package com.example.cardiotracker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnLogout;
-    private Button btnAddRecord;
-    private Button btnView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Remove the title bar (action bar)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
+        // Make the activity full screen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
 
-        btnLogout = findViewById(R.id.btnLogout); // Replace with your logout button ID
-
-        // Set click listener for the logout button
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+        ImageView heartIcon = findViewById(R.id.hearticon);
+        heartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an intent to navigate to the LoginActivity
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                // Clear the back stack, so the user cannot navigate back to the current activity
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                // Start the LoginActivity and finish the current activity
+                // Start the list_item_view activity
+                Intent intent = new Intent(MainActivity.this, list_item_view.class);
                 startActivity(intent);
-                finish();
             }
         });
 
-        btnAddRecord = findViewById(R.id.btnAddNewRecord);
-        btnAddRecord.setOnClickListener(new View.OnClickListener() {
+        ImageView newRecord = findViewById(R.id.newrecord);
+        newRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Start the list_item_view activity
                 Intent intent = new Intent(MainActivity.this, AddRecord.class);
                 startActivity(intent);
             }
         });
 
-        btnView=findViewById(R.id.btnAllInformation);
-        btnView.setOnClickListener(new View.OnClickListener() {
+        ImageView aboutUs = findViewById(R.id.aboutus);
+        aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, view.class);
+                // Start the list_item_view activity
+                Intent intent = new Intent(MainActivity.this, AboutUs.class);
                 startActivity(intent);
-
             }
         });
 
+        ImageView privacyPolicy = findViewById(R.id.privacypolicy);
+        privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the list_item_view activity
+                Intent intent = new Intent(MainActivity.this, PrivacyPolicy.class);
+                startActivity(intent);
+            }
+        });
 
+        ImageView githubIcon = findViewById(R.id.github);
+        githubIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open the GitHub repository link
+                String githubRepoUrl = "https://github.com/Sk-Azraf-Sami/Cardio-Tracker";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(githubRepoUrl));
+                startActivity(intent);
+            }
+        });
+
+        ImageView logoutIcon = findViewById(R.id.logout);
+        logoutIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutConfirmationDialog();
+            }
+        });
+    }
+
+    private void showLogoutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Perform logout and navigate back to the login page
+                logout();
+                navigateToLogin();
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    private void logout() {
+        finish();
+    }
+
+    private void navigateToLogin() {
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+        finish(); // Close the MainActivity
     }
 }

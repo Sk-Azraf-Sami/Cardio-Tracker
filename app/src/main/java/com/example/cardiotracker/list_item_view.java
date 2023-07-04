@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class view extends AppCompatActivity {
+public class list_item_view extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -57,35 +57,70 @@ public class view extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshotList = new ArrayList<>();
-                List<String> dataList = new ArrayList<>();
+                List<HealthData> dataList = new ArrayList<>();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Assuming the data is stored under a child with a unique ID
                     dataSnapshotList.add(snapshot);
 
-                    // Access the data fields
+                    // Retrieve data from snapshot
                     String comment = snapshot.child("Comment").getValue(String.class);
-                    String heartRate = snapshot.child("HeartRate").getValue(String.class);
+                    String heartRateString = snapshot.child("HeartRate").getValue(String.class);
                     String sysPressure = snapshot.child("SysPressure").getValue(String.class);
                     String diaPressure = snapshot.child("DiaPressure").getValue(String.class);
                     String systemDate = snapshot.child("SystemDate").getValue(String.class);
                     String systemTime = snapshot.child("SystemTime").getValue(String.class);
 
-                    // Create a string representation of the data
-                    String data = "Comment: " + comment +
-                            "\nDiaPressure: " + diaPressure +
-                            "\nHeartRate: " + heartRate +
-                            "\nSysPressure: " + sysPressure +
-                            "\nSystemDate: " + systemDate +
-                            "\nSystemTime: " + systemTime;
+                    ImageView statusIndicator = new ImageView(list_item_view.this);
+                    int heartRate = 0;
+                    int sysPressureInt = 0;
+                    int diaPressureInt = 0;
 
-                    dataList.add(data);
+                    // Convert the heartRateString to an integer
+                    try {
+                        if (heartRateString != null) {
+                            String numericValue = heartRateString.split(" ")[0];
+                            heartRate = Integer.parseInt(numericValue);
+                        }
+                    } catch (NumberFormatException e) {
+                        Log.e("HealthDataAdapter", "Invalid heart rate format", e);
+                    }
+
+                    // Convert the sysPressure to an integer
+                    try {
+                        if (sysPressure != null) {
+                            String numericValue = sysPressure.split(" ")[0];
+                            sysPressureInt = Integer.parseInt(numericValue);
+                        }
+                    } catch (NumberFormatException e) {
+                        Log.e("HealthDataAdapter", "Invalid sys pressure format", e);
+                    }
+
+                    // Convert the diaPressure to an integer
+                    try {
+                        if (diaPressure != null) {
+                            String numericValue = diaPressure.split(" ")[0];
+                            diaPressureInt = Integer.parseInt(numericValue);
+                        }
+                    } catch (NumberFormatException e) {
+                        Log.e("HealthDataAdapter", "Invalid dia pressure format", e);
+                    }
+
+                    if (heartRate >= 60 && heartRate <= 100 && diaPressureInt >= 60 && diaPressureInt <= 80 && sysPressureInt >= 90 && sysPressureInt <= 120) {
+                        statusIndicator.setImageResource(R.drawable.green_circle); // Normal status
+                    } else {
+                        statusIndicator.setImageResource(R.drawable.red_circle); // Abnormal status
+                    }
+
+                    String heartRateWithUnit = heartRateString + " bpm";
+                    String diaPressureWithUnit = diaPressure + " mmHg";
+                    String sysPressureWithUnit = sysPressure + " mmHg";
+
+                    HealthData healthData = new HealthData(systemDate, systemTime, diaPressureWithUnit, sysPressureWithUnit, heartRateWithUnit, comment);
+                    dataList.add(healthData);
                 }
 
-                // Update the UI with the fetched data
                 ListView listView = findViewById(R.id.listView);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(view.this,
-                        android.R.layout.simple_list_item_1, dataList);
+                HealthDataAdapter adapter = new HealthDataAdapter(list_item_view.this, dataList);
                 listView.setAdapter(adapter);
             }
 
@@ -95,7 +130,6 @@ public class view extends AppCompatActivity {
             }
         };
 
-        // Attach the value event listener to the database reference
         databaseReference.addValueEventListener(valueEventListener);
     }
 
