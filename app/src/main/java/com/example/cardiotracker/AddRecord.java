@@ -21,9 +21,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddRecord extends AppCompatActivity {
-    private EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
+    public EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
     private Button btnAdd;
-    private DatabaseReference databaseReference;
+    public DatabaseReference databaseReference;
 
 
     @Override
@@ -49,7 +49,7 @@ public class AddRecord extends AppCompatActivity {
     }
 
 
-    private
+    public
     void addInformation() {
         String heartRate = editHeartRate.getText().toString().trim();
         String sysPressure = editSysPressure.getText().toString().trim();
