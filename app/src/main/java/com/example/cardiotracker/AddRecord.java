@@ -20,13 +20,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * The AddRecord class represents an activity that allows users to add a record with heart rate, systolic pressure,
+ * diastolic pressure, and optional comment to a Firebase database. It validates the input data and stores it under
+ * the current user's ID in the database.
+ */
 public class AddRecord extends AppCompatActivity {
     public EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
     public Button btnAdd;
     private Button clear;
     public DatabaseReference databaseReference;
 
-
+    /**
+     * Called when the activity is starting. This method sets up the activity layout and initializes the required views
+     * and buttons. It also sets the click listeners for the 'Add' and 'Clear' buttons.
+     *
+     * @param savedInstanceState a Bundle containing the saved state of the activity, or null if there is no saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +67,12 @@ public class AddRecord extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validates the input data and adds the record to the database under the current user's ID. It retrieves the heart rate,
+     * systolic pressure, diastolic pressure, comment, current date, and current time. It performs input validation and
+     * generates a unique ID for the record. Then, it creates a new node in the database and sets the values for the record.
+     * Finally, it displays a toast message indicating the success or failure of the data addition.
+     */
     public void addInformation() {
         String heartRate = editHeartRate.getText().toString().trim();
         String sysPressure = editSysPressure.getText().toString().trim();
@@ -131,6 +147,9 @@ public class AddRecord extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Clears the input fields for heart rate, systolic pressure, diastolic pressure, and comment.
+     */
     private void clearFields() {
         editHeartRate.setText("");
         editSysPressure.setText("");
