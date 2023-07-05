@@ -22,6 +22,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * This class represents the activity responsible for user login.
+ * It allows users to enter their email and password to authenticate and log in.
+ * If the login is successful, the user is redirected to the MainActivity.
+ * If the login fails, an error message is displayed to the user.
+ */
 public class Login extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
@@ -32,6 +38,16 @@ public class Login extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    /**
+     * Called when the activity is starting. This is where most initialization of the activity should go.
+     * Sets the layout for the activity and initializes the UI elements.
+     * Sets up the Firebase Authentication instance.
+     * Sets listeners for the show password checkbox, login button, and create account text view.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +89,14 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Handles the login process when the login button is clicked.
+     * Retrieves the email and password entered by the user.
+     * Validates the input fields and displays appropriate error messages if necessary.
+     * Calls the signInWithEmailAndPassword method of FirebaseAuth to authenticate the user.
+     * If the authentication is successful, displays a toast message and redirects the user to the MainActivity.
+     * If the authentication fails, displays a toast message indicating the failure.
+     */
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
