@@ -1,8 +1,5 @@
 package com.example.cardiotracker;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,8 +9,26 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+/**
+ * This class represents the main activity of the application.
+ * It provides the main user interface and navigation options.
+ * The activity includes options to view existing health records, add a new health record,
+ * view information about the application, view the privacy policy, open the GitHub repository,
+ * and log out from the application.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Called when the activity is starting. This is where most initialization of the activity should go.
+     * Sets the activity to full screen by removing the title bar and making the activity full screen.
+     * Initializes the UI elements and sets click listeners for the various options in the activity.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Shows a confirmation dialog for logout when the logout icon is clicked.
+     * If the user confirms the logout, it performs the logout action and navigates back to the login page.
+     */
     private void showLogoutConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Logout");
@@ -103,11 +121,20 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", null);
         builder.show();
     }
-
+    /**
+     * Performs the logout action.
+     * This method is called when the user confirms the logout.
+     * It finishes the current activity, effectively logging out the user.
+     */
     private void logout() {
         finish();
     }
 
+    /**
+     * Navigates back to the login page.
+     * This method is called after performing the logout action.
+     * It starts the Login activity and finishes the current activity.
+     */
     private void navigateToLogin() {
         Intent intent = new Intent(MainActivity.this, Login.class);
         startActivity(intent);

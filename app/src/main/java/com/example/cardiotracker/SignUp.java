@@ -1,7 +1,5 @@
 package com.example.cardiotracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -13,17 +11,21 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-
+/**
+ * This activity allows users to sign up for an account by providing their email and password.
+ * Upon successful signup, the user is navigated to the login screen. If signup fails, appropriate error messages are displayed.
+ */
 public class SignUp extends AppCompatActivity {
 
     private TextInputEditText emailEditText, passwordEditText;
@@ -31,7 +33,14 @@ public class SignUp extends AppCompatActivity {
     private TextView alreadyAccountTextView;
     private FirebaseAuth mAuth;
     private CheckBox showPasswordCheckBox;
-
+    /**
+     * Called when the activity is starting. This is where most initialization of the activity should go.
+     * Sets the content view to display the signup layout.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,11 +119,15 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Validates the email and password fields.
+     * Displays appropriate toast messages for invalid fields.
+     *
+     * @param email    The email entered by the user
+     * @param password The password entered by the user
+     * @return True if the fields are valid, False otherwise
+     */
     private boolean validateFields(String email, String password) {
-        // Implement your own validation logic here
-        // You can check if the email is valid using a regular expression or other methods
-        // You can also check if the password meets your criteria for strength
 
         if (email.isEmpty()) {
             Toast.makeText(this, "Please enter an email address.", Toast.LENGTH_SHORT).show();

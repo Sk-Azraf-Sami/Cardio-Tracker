@@ -1,7 +1,5 @@
 package com.example.cardiotracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class represents the activity that displays a list of health data records for the current user.
+ * It fetches data from the Firebase Realtime Database and populates the list view with health data records.
+ * The user can click on a list item to open the UpdateDeleteActivity for modifying or deleting the selected record.
+ */
 public class list_item_view extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
@@ -28,6 +32,17 @@ public class list_item_view extends AppCompatActivity {
     private FirebaseUser currentUser;
     private List<DataSnapshot> dataSnapshotList;
 
+
+    /**
+     * Called when the activity is starting. This is where most initialization of the activity should go.
+     * Sets up the Firebase Authentication instance and retrieves the reference to the current user's data in the database.
+     * Calls the fetchDataFromDatabase method to populate the list view with health data records.
+     * Sets an item click listener on the list view to open the UpdateDeleteActivity when a list item is clicked.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +66,11 @@ public class list_item_view extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Fetches health data records from the Firebase Realtime Database for the current user.
+     * Uses a ValueEventListener to listen for changes in the data and populate the list view accordingly.
+     * If the data retrieval fails, an error message is logged.
+     */
     private void fetchDataFromDatabase() {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -132,7 +151,12 @@ public class list_item_view extends AppCompatActivity {
 
         databaseReference.addValueEventListener(valueEventListener);
     }
-
+    /**
+     * Opens the UpdateDeleteActivity to modify or delete the selected health data record.
+     *
+     * @param key The key of the selected health data record in the Firebase Realtime Database.
+     *            This key is passed as an extra in the Intent to the UpdateDeleteActivity.
+     */
     private void openUpdateDeleteActivity(String key) {
         Intent intent = new Intent(this, UpdateDeleteActivity.class);
         intent.putExtra("key", key);
