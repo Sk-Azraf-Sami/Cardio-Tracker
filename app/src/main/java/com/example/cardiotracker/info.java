@@ -26,24 +26,6 @@ public class info {
         this.systemTime = systemTime;
     }
 
-    public void addUserData(info data)
-    {
-        if(info_list.contains(data))
-        {
-            throw new IllegalArgumentException();
-        }
-        info_list.add(data);
-    }
-    public int count()
-    {
-        return info_list.size();
-    }
-    public List<info> getData()
-    {
-        List<info>datalist = info_list;
-        return datalist;
-    }
-
 
     public String getComment() {
         return comment;
@@ -76,5 +58,37 @@ public class info {
     public String getSystemTime() {
         return systemTime;
     }
+
+    public void addUserData(info data)
+    {
+        if(info_list.contains(data))
+        {
+            throw new IllegalArgumentException();
+        }
+        info_list.add(data);
+    }
+    public int count()
+    {
+        return info_list.size();
+    }
+    public List<info> getData()
+    {
+        List<info>datalist = info_list;
+        return datalist;
+    }
+
+    public void deleteUserData(info data)
+    {
+        List<info> datalist = info_list;
+        if(datalist.contains(data))
+        {
+            info_list.remove(data);
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }
 
