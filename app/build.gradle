@@ -7,11 +7,11 @@ android {
     namespace 'com.example.cardiotracker'
     compileSdk 33
 
-    testOptions {
+   /* testOptions {
         unitTests {
             includeAndroidResources = true
         }
-    }
+    }*/
 
     defaultConfig {
         applicationId "com.example.cardiotracker"
@@ -36,8 +36,8 @@ android {
 }
 
 dependencies {
-    testImplementation 'org.robolectric:robolectric:4.6.1'
-    implementation 'androidx.test.ext:junit:1.1.1'
+    //testImplementation 'org.robolectric:robolectric:4.6.1'
+   // implementation 'androidx.test.ext:junit:1.1.1'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -70,7 +70,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
 
     implementation 'com.google.android.material:material:1.4.0'
-
+   // implementation files('C:/Users/user/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
 
 
 }
