@@ -68,4 +68,13 @@ public class UnitTest {
         assertThrows(IllegalArgumentException.class,() -> demo.deleteUserData(demo));
     }
 
+    @Test
+    public void testaddUserDataException()
+    {
+        info demo = new info("Sample Comment","80","80","120","05/07/2023","10:30:45");
+        demo.addUserData(demo);
+
+        assertThrows(IllegalArgumentException.class,() -> demo.addUserData(demo));
+    }
+
 }
