@@ -77,4 +77,12 @@ public class UnitTest {
         assertThrows(IllegalArgumentException.class,() -> demo.addUserData(demo));
     }
 
+    @Test
+    public void testCount()
+    {
+        info demo = new info("Sample Comment","80","80","120","05/07/2023","10:30:45");
+        demo.addUserData(demo);
+        assertEquals(1,demo.count());
+    }
+
 }
