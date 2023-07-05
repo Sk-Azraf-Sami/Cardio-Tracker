@@ -7,6 +7,12 @@ android {
     namespace 'com.example.cardiotracker'
     compileSdk 33
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.cardiotracker"
         minSdk 24
@@ -30,6 +36,8 @@ android {
 }
 
 dependencies {
+    testImplementation 'org.robolectric:robolectric:4.6.1'
+    implementation 'androidx.test.ext:junit:1.1.1'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -44,6 +52,7 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
 
     // implementation project(path: ':app')
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.9.0'
 

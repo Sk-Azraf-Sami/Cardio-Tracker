@@ -21,10 +21,10 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddRecord extends AppCompatActivity {
-    private EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
-    private Button btnAdd;
+    public EditText editHeartRate, editSysPressure, editDiaPressure, editComment;
+    public Button btnAdd;
     private Button clear;
-    private DatabaseReference databaseReference;
+    public DatabaseReference databaseReference;
 
 
     @Override
@@ -39,6 +39,7 @@ public class AddRecord extends AppCompatActivity {
         editDiaPressure = findViewById(R.id.editDiastolicPressure);
         editComment = findViewById(R.id.editAddComment);
         btnAdd = findViewById(R.id.btnAdd);
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +57,7 @@ public class AddRecord extends AppCompatActivity {
         });
     }
 
-    private void addInformation() {
+    public void addInformation() {
         String heartRate = editHeartRate.getText().toString().trim();
         String sysPressure = editSysPressure.getText().toString().trim();
         String diaPressure = editDiaPressure.getText().toString().trim();
