@@ -34,10 +34,9 @@ public class UpdateDeleteActivity extends AppCompatActivity {
      * Called when the activity is starting. This is where most initialization of the activity should go.
      * Sets the content view to display the update_delete layout.
      * Retrieves the key from the intent extras and fetches the corresponding data from the database.
-     *
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
-     *                           then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
-     *                           Otherwise, it is null.
+     * then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     * Otherwise, it is null.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
