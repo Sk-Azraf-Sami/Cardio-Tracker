@@ -20,7 +20,6 @@ import java.util.Locale;
 public class HealthDataAdapter extends ArrayAdapter<HealthData> {
     /**
      * Constructs a HealthDataAdapter with the given context and data list.
-     *
      * @param context   the context of the adapter
      * @param dataList  the list of HealthData objects to be displayed
      */
@@ -29,7 +28,6 @@ public class HealthDataAdapter extends ArrayAdapter<HealthData> {
     }
     /**
      * Gets a View that displays the data at the specified position in the data list.
-     *
      * @param position       the position of the item within the adapter's data set
      * @param convertView    the old view to reuse, if possible
      * @param parent         the parent ViewGroup containing the convertView
@@ -80,7 +78,6 @@ public class HealthDataAdapter extends ArrayAdapter<HealthData> {
     }
     /**
      * Formats the given time string into the desired format.
-     *
      * @param time  the time string to be formatted
      * @return the formatted time string
      */
