@@ -51,6 +51,8 @@ For detailed instructions on setting up an Android emulator and running the app,
 
 ## [Usage](#usage)
 
+https://github.com/Sk-Azraf-Sami/Cardio-Tracker/assets/126973724/b4d226a9-048a-47da-b7ef-e5ddd290eef1
+
 To use the Cardio Tracker app, follow these steps:
 
 1. Sign Up:
@@ -84,16 +86,11 @@ To use the Cardio Tracker app, follow these steps:
    - To delete a record, locate the specific record you want to remove in the list.
    - Click on the "Delete" button or swipe left on the record.
    - Confirm the deletion when prompted.
-  
-
-
-     
-
 
 
 ## [Documentation](#documentation)
 
-For detailed information about the Cardio Tracker app, please refer to the [Wiki](https://github.com/your-username/your-repo/wiki) section.
+For detailed information about the Cardio Tracker app, please refer to the [Wiki](https://github.com/Sk-Azraf-Sami/Cardio-Tracker/wiki) section.
 
 
 ## [Contributing](#contributing)
