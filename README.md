@@ -84,9 +84,8 @@ To use the Cardio Tracker app, follow these steps:
    - To delete a record, locate the specific record you want to remove in the list.
    - Click on the "Delete" button or swipe left on the record.
    - Confirm the deletion when prompted.
-
-
- [![Unit Test](C:\Users\Wasif\AndroidStudioProjects\CardioTracker1\Cardio-Tracker\unit.PNG)](https://drive.google.com/file/d/18BeUqRMFa4ecfei5JkuPKtw9PEr7e1Lk/view?usp=drive_link)
+   - 
+ [![Unit Test](unit.PNG)](https://drive.google.com/file/d/18BeUqRMFa4ecfei5JkuPKtw9PEr7e1Lk/view?usp=drive_link)
      
 
 
