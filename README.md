@@ -90,7 +90,7 @@ To use the Cardio Tracker app, follow these steps:
 
 ## [Documentation](#documentation)
 
-For detailed information about the Cardio Tracker app, please refer to the [Documentation](https://github.com/Sk-Azraf-Sami/SOS-Paper-Pencil-Game-AI/blob/main/sos-documentation.pdf).
+For detailed information about the Cardio Tracker app, please refer to the [Documentation]((https://github.com/Sk-Azraf-Sami/Cardio-Tracker/wiki)).
 
 
 ## [Contributing](#contributing)
